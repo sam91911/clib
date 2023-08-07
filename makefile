@@ -1,2 +1,2 @@
 main:
-	$(MAKE) -C lib
+	$(MAKE) -C typelib
