@@ -42,12 +42,14 @@ void DICT_rm(DICT_t* item, char* key){
 	if(!strcmp(item->data[id].key, key)){
 		item->data[id].key = 0;
 		item->data[id].value = 0;
+		item->len--;
 		return;
 	}
 	id = (xxhash(&hash, item->h2, key)%item->mlen);
 	if(!strcmp(item->data[id].key, key)){
 		item->data[id].key = 0;
 		item->data[id].value = 0;
+		item->len--;
 		return;
 	}
 	return 0;
