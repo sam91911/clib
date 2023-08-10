@@ -41,7 +41,7 @@ void HTTP_init(HTTP_t*);
 HTTP_t* HTTP_new(void);
 void HTTP_del(HTTP_t*);
 char* HTTP_send_str(HTTP_t*);
-char* HTTP_rec_str(HTTP_t*)
+char* HTTP_rec_str(HTTP_t*);
 void HTTP_set(HTTP_t*, char*, char*);
 char* HTTP_get(HTTP_t*, char*);
 

@@ -33,7 +33,25 @@ void* DICT_get(DICT_t* item, char* key){
 	return 0;
 }
 
-
+void DICT_rm(DICT_t* item, char* key){
+	if(!item) return 0;
+	XXHASH_t hash;
+	uint64_t id;
+	id = (xxhash(&hash, item->h1, key)%item->mlen);
+	if(!item->data[id].key) return 0;
+	if(!strcmp(item->data[id].key, key)){
+		item->data[id].key = 0;
+		item->data[id].value = 0;
+		return;
+	}
+	id = (xxhash(&hash, item->h2, key)%item->mlen);
+	if(!strcmp(item->data[id].key, key)){
+		item->data[id].key = 0;
+		item->data[id].value = 0;
+		return;
+	}
+	return 0;
+}
 
 void DICT_set(DICT_t* item, char* key, void* value){
 	if(!item) return;

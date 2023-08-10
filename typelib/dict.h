@@ -24,5 +24,7 @@ void DICT_init(DICT_t*, uint32_t);
 DICT_t* DICT_new(uint32_t);
 void* DICT_get(DICT_t*, char*);
 void DICT_set(DICT_t*, char*, void*);
+void DICT_rm(DICT_t*, char*);
 void DICT_del(DICT_t*);
+
 #endif
