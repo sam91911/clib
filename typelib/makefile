@@ -1,5 +1,5 @@
 main: liblist.a libstack.a libxxhash.a libmersenne.a libdarray.a libqueue.a libdict.a
-CFLAGS = -w
+CFLAGS = -w -O2
 
 libdict.a: dict.c dict.h xxhash.h mersenne.h
 	gcc $(CFLAGS) -c $< -o $@
