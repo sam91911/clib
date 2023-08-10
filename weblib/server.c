@@ -60,6 +60,7 @@ int SERVER_close(SERVER_t* item){
 	for(i = 0; i < item->msub; i++){
 		if(item->sub_P[i]) kill(item->sub_P[i], SIGQUIT);
 	}
+	kill(item->server_P, SIGQUIT);
 	int chstat;
 	free(item->sub_P);
 	free(item);
@@ -69,5 +70,21 @@ int SERVER_close(SERVER_t* item){
 }
 
 int SERVER_run(SERVER_t* item, int (*proc)(int)){
+	if(!item) return -1;
+	pid_t sp = fork();
+	switch(sp){
+		case -1:
+			return -2;
+		case 0:
+			;
+		default:
+			item->server_P = sp;
+			FILE* f;
+			if(!(f = fopen(item->server_dir, "r+"))){
+				SERVER_close(item);
+				return -1;
+			}
+			
+	}
 	return 0;
 }

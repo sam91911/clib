@@ -1,6 +1,7 @@
 #ifndef LIST_H
 #define LIST_H
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct list{
 	struct list* next;
