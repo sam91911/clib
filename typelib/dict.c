@@ -1,19 +1,22 @@
 #include "dict.h"
+#ifndef DICT_ISIZE
+#define DICT_ISIZE 32
+#endif
 #define xxhash(x, y, z) ({XXHASH_init(x, y); XXHASH_update(x, z, strlen(z)); XXHASH_final(x);})
 
-void DICT_init(DICT_t* item, uint32_t seed){
+void DICT_init(DICT_t* item, uint32_t seed, uint64_t size){
 	MERSENNE_init(&(item->rand), seed);
 	item->h1 = (((uint64_t)MERSENNE_rand(&(item->rand)))<<32)|((uint64_t)MERSENNE_rand(&(item->rand)));
 	item->h2 = (((uint64_t)MERSENNE_rand(&(item->rand)))<<32)|((uint64_t)MERSENNE_rand(&(item->rand)));
 	item->len = 0;
-	item->mlen = 32;
-	item->data = calloc(32,sizeof(DICT_it));
+	item->mlen = size;
+	item->data = calloc(size,sizeof(DICT_it));
 	return;
 }
 
-DICT_t* DICT_new(uint32_t seed){
+DICT_t* DICT_new(uint32_t seed, uint64_t size){
 	DICT_t* out = malloc(sizeof(DICT_t));
-	DICT_init(out, seed);
+	DICT_init(out, seed, size);
 	return out;
 }
 
