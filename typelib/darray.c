@@ -19,12 +19,13 @@ void* DARRAT_get(DARRAY_t* item, unsigned int ind){
 	return (item->data + (item->size*ind));
 }
 
-void DARRAY_append(DARRAY_t* item, void* thx){
-	if(item->len == item->mlen){
-		item->mlen *= 2;
+void DARRAY_append(DARRAY_t* item, void* thx, unsigned int len){
+	if((item->len+len) => item->mlen){
+		item->mlen *= ((item->len+len)/item->mlen)+1;
 		item->data = relloc(item->data, item->mlen*item->size);
 	}
-	memcpy((item->data+((item->len++)*item->size)), thx, item->size);
+	memcpy((item->data+((item->len)*item->size)), thx, item->size*len);
+	item->len += len;
 	return 0;
 }
 
