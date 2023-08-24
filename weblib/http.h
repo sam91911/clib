@@ -7,6 +7,8 @@
 #include <sys/socket.h>
 #include <unistd.h>
 #include "../typelib/dict.h"
+#include "../typelib/darray.h"
+#include "../iolib/dictio.h"
 #define HTTP_Continue 100
 #define HTTP_Switching_ProtoCol 101
 #define HTTP_Processing 102
@@ -34,6 +36,7 @@ typedef struct{
 	int version;
 	char* header;
 	char* content;
+	uint64_t len;
 	DICT_t tag;
 } HTTP_t;
 
@@ -44,6 +47,7 @@ char* HTTP_send_str(HTTP_t*);
 char* HTTP_rec_str(HTTP_t*);
 void HTTP_set(HTTP_t*, char*, char*);
 char* HTTP_get(HTTP_t*, char*);
+void HTTP_content(HTTP_t*, char*, uint64_t);
 
 
 #endif
