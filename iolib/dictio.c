@@ -34,6 +34,7 @@ int DICTIO_load(FILE* file, DICT_t* item){
 		if(read == EOF) return -1;
 		if(read == '}') break;
 		if(read == '\n') continue;
+		if(read == '\t') continue;
 		if(read == ':'){i = 1;n2 = 0;continue;}
 		if(read == ';'){i = 0;n1 = 0;
 			DICT_set(item, buffer1, buffer2);

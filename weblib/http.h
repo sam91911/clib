@@ -14,7 +14,7 @@
 #define HTTP_Processing 102
 #define HTTP_OK 200
 #define HTTP_Created 201
-#define HTTP_Acepted 202
+#define HTTP_Accepted 202
 #define HTTP_Non-Authoritative_Information 203
 #define HTTP_No_Content 204
 #define HTTP_Reset_Content 205
@@ -31,12 +31,17 @@
 #define HTTP_Internal_Server_Error 500
 #define HTTP_Bad_Gateway 502
 #define HTTP_Service_Unavailable 503
+#define HTTP_GET 1
+#define HTTP_POST 2
+#define HTTP_PUT 3
+#define HTTP_DELETE 4
+#define HTTP_CONNECT 5
+
 typedef struct{
 	int status;
 	int version;
 	char* header;
 	char* content;
-	uint64_t len;
 	DICT_t tag;
 } HTTP_t;
 
